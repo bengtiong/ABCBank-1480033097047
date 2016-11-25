@@ -1,0 +1,45 @@
+Agent: Thank you for calling Bank of Wealth. My name is Sydney. How can I assist you today?
+
+Customer: I want to report a stolen card. I got drunk, and had lost my wallet last night.
+
+Agent: Oh, I'm so sorry to hear about that, don't worry, we're gonna make sure that we freeze your account, so no one can use your Credit Card, ok?
+
+Customer: Thanks, I hope no one have tried using it.
+
+Agent: Don't worry, we are gonna be alerted right away by our System, if there are any invalid pin attempts on your card. For security purposes, let me just verify your account first, ok?
+
+Customer: Sure, go ahead. What do you wanna ask?
+
+Agent: I need to verify your First and Last Name?
+
+Customer: My name is Park Jae-Sang, but, you can call me "PSY!"
+
+Agent: Thanks, PSY! Wait, Is it just a coincidence that your name is just like the one who created the world famous, "Oppa Gangnam Style"!?
+
+Customer: I'm sorry, that wasn't me. But, since that song became very popular, my friends are now calling me PSY.
+
+Agent: You got me there! Well, I'm sorry, just had to ask that, since, I really love dancing while I'm playing it every morning! But, going back on your card, let me also ask you for your Mother's Maiden Name?
+
+Customer: That's alright, Sydney! It is Wan.
+
+Agent: How about the last four numbers of your Social Security Number?
+
+Customer: It is ****.
+
+Agent: Last, but not the least, may I please verify your complete Billing Address?
+
+Customer: I live in 67489, Rodeo Drive, Beverly Hills, CA, 90210.
+
+Agent: Thank you so much for all of the information. I'm now processing the request to freeze your account. Please, grab a pen and paper. Thank you!
+
+Customer: I have it, go ahead!
+
+Agent: As of September 26, 2013 at 5PM Pacific Time, your Credit Card Account is now frozen. You'll get your Card Replacement within the next 3-5 Business Days, Free of Charge. Your Confirmation Number is 787-909-SPNC
+
+Customer: I got it, thanks a bunch, Sydney! You're such a big help!
+
+Agent: You're very much welcome! Is there anything else that I could help you with?
+
+Customer: I guess, that would be all for today. Thanks again! Bye!
+
+Agent: You're welcome! And, again, my name is Sydney! Thank you for calling Bank of Wealth! Good bye!

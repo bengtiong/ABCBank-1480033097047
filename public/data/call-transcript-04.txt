@@ -1,0 +1,52 @@
+Agent: Royal Human Bank, this is Linda speaking.
+
+Customer: Hi Linda. I was just at your Bridgeport branch and I think I left my Debit card in the
+ATM machine.
+
+Agent: Okay. Do you have your Debit card number?
+
+Customer: Actually, I don’t.
+
+Agent: Okay, well do you have the checking account number associated with the Debit
+card?
+
+Customer: That I do have. Are you ready? I’ll give you what I’ve got. 765 456 789.
+
+Agent: Okay. That’s 765 456 789.
+
+Customer: Correct.
+
+Agent: Okay and what is your name sir? 
+
+Customer: It’s Robert Applebaum. That’s A-P-P-L-E-B-A-U-M.
+
+Agent: Okay. I have Robert Applebaum. A-P-P-L-E-B-A-U-M.
+
+Customer: Yes.
+
+Agent: And what is your date of birth Robert?
+
+Customer: July 7th, 1974.
+
+Agent: Okay. July 7th, 1974.
+
+Customer: Yes.
+
+Agent: Okay. And your phone number?
+
+Customer: It’s 610-265-1715.
+
+Agent: Okay. I have 610-265-1715. 
+
+Customer: Yes.
+
+Agent: Okay Robert. I have just temporarily suspended your card. If it is in the machine, we
+will contact you and lift the suspension.
+
+Customer: Oh, thank you.
+
+Agent: Sure. Thank you.
+
+Customer: Goodbye.
+
+Agent: Goodbye. 

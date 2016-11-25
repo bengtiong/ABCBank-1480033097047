@@ -1,0 +1,157 @@
+Agent: Hi, you've called Swish Bank, how may I help you?
+
+Customer: I'm a customer of your bank and I have some errors on my account details.
+
+Agent: What type of errors?
+
+Customer: Well my name is spelt incorrectly for a start, it's spelt c-l-a-r-k-e-s-o-n, it shouldn't have an e. Also my address is wrong, it shows my old address and only reached me because of a redirect.
+
+Agent: I can fix that for you, could I have your customer identification number.
+
+Customer: 32948322
+
+Agent: Your customer pin number..
+
+Customer: Um, don't remember, I hardly ever use it.
+
+Agent: That's fine, I am just going to have ask some security questions to verify you are the account holder. Date of birth?
+
+Customer: 1/1/1975
+
+Agent: Favourite chess opening..
+
+Customer: Sicilian
+
+Agent: Most disturbing childhood memory..
+
+Customer: Almost drowning in a pond after going in to fetch a ball after Billy called me a chicken because I wouldn't go in because I couldn't swim.
+
+Agent: That's not showing up on my system..
+
+Customer: Spending a weekend at Neverland Ranch.
+
+Agent: Okay, now let's go ahead and fix your details. Would you like to change the most disturbing childhood memory on our records?
+
+Customer: No, come to think of it the duck pond was a walk in the park after Neverland.
+
+Agent: What is your new address?
+
+Customer: 12 SeaWhack Ave Crichfield
+
+Agent: I'm sorry sir, that's not coming up as a valid address.
+
+Customer: It's a new residential area..
+
+Agent: I'm sorry sir, it's not validating.
+
+Customer: We only finished building about..
+
+Agent: It's bank policy not to accept fictitious addresses. I am instructed by bank security policy to ask the following questions, are you a terrorist, sex offender, money launderer or professional athlete?
+
+Customer: No..
+
+Agent: The only option I have is to change your address status to homeless, I must warn you that it may impact your credit rating in a negative way. I suggest you move to a real address as quickly as possible.
+
+Customer: No ... I'm not homeless, could you just leave it at the old address..
+
+Agent: I cannot undo an update sir. Once you are living at a valid address you can call back. Would you like to fix your other record problems now sir?
+
+Customer: My surname, it doesn't have an E.
+
+Agent: That has been corrected sir. I have replaced your surname.
+
+Customer: And I would like to merge my wife's account with mine.
+
+Agent: Your wife's account ID.
+
+Customer: 94839382
+
+Agent: Your wife's security pin id.
+
+Customer: I don't know... Look why don't I just put her on.
+
+Customer: Hi, it's Maureen here, I would like to merge my account with my husbands but I don't know my pin.
+
+Agent: Date of birth?
+
+Customer: 10/9/1975
+
+Agent: I'm sorry that's not right.
+
+Customer: Yes it is.
+
+Agent: No it's not.
+
+Customer: Try 9/10/1975.
+
+Agent: Correct. Favourite province of China.
+
+Customer: I've never been to China.
+
+Agent: Correct. Most embarrassing teenage experience?
+
+Customer: Losing my swimming top in the pool during the school swim meet.
+
+Agent: Right, what can I do for you today?
+
+Customer: I would like to merge my account with my husband.
+
+Agent: My records are showing that you have a different surname..
+
+Customer: I didn't change my name when we got married.
+
+Agent: And you are living at a different address? He is showing up as homeless. The bank will need some evidence that you are married.
+
+Customer: Look, this is ridiculous, you have my security identification and his, it's not up to you to decide whether or not we are married.
+
+Agent: Normally we allow account merges but in this case the target account is flagged as a potential terrorist, sex offender, money launderer or professional athlete due to irregularities in address change requests showing up in his history.
+
+Customer: We have only move house once..
+
+Agent: So you are not at your stated address?
+
+Customer: Well no, I'm at 12 SeaWhack Ave Crichfield
+
+Agent: I am instructed by bank security policy to ask the following questions, are you a terrorist, sex offender, money launderer or professional athlete?
+
+Customer: Well actually two of the four but I don't see how that's any of your business..
+
+Agent: I cannot merge your accounts due to your homeless status and declining credit status, not only doesn't your "husband" have a residential address but he keeps changing his surname..
+
+Customer: Look, my husband wants to talk to you again!
+
+Customer: I have just received a text message telling me that my visa card has been suspended?
+
+Agent: Customer identification number?
+
+Customer: You just spoke to me!
+
+Agent: I have just been speaking to a Maureen O'Sullivan. Unless you are Maureen I will require your Customer identification number?
+
+Customer: Look, this has been one long mistake, how about we just pretend I didn't call today and that I didn't find any mistakes on my record and you can just go back to the old record..
+
+Agent: I'm sorry sir, this conversation has been recorded for training purposes and may even be forwarded around the office for a laugh. I cannot remove this call from our records.
+
+Customer: Could we just go back to our old record? Please?
+
+Agent: I cannot go back to an unclean record. You flagged that record as incorrect on a previous call. Will that be all for today?
+
+Customer: Can I speak to a supervisor..
+
+Agent: I am the supervisor, they made us all supervisors, it streamlined the complaints process. Anything else for today? Would you like to speak to my line manager?
+
+Customer: Yes! Please!
+
+Agent: That's me as well! How can I help you? I'm also my performance manager and my career guidance councilor.
+
+Customer: No .. I think you've done enough. I need to get to a bank to try and get some cash..
+
+Agent: Just a moment sir, yes my branch finder shows your fictitious address is right around the corner from our Chrichfield branch..
+
+Customer: Yes! What street..
+
+Agent: And it wont open for another six months with that being a new area and all. Can I help you with anything else?
+
+Customer: No, please, nothing else.
+
+Agent: Thank you for your business. Goodbye Mr Cockson.
