@@ -1,0 +1,6 @@
+.scrollingBox{
+    height:280px;
+    overflow:auto;
+    white-space: pre-line;
+}
+
