@@ -1,0 +1,554 @@
+<!--
+    Author: Beng Tiong Tan
+-->
+
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
+
+<head>
+    <title>Nationwide Dashboard</title>
+
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+<!--[if lt IE 7]>
+<p class="chromeframe" style="background:#eee; padding:10px; width:100%">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
+<![endif]-->
+
+    <!-- Facebook script -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    
+    <!-- ============================== Templates ============================== -->
+
+    <!-- Livecall dashbaord table template -->
+    <script id="dashboard_table_template" type="text/x-jquery-tmpl">
+        <tr onclick="displayLiveCall(this)">
+            <td>${Agent}</td>
+            <td>${FCR}</td>
+            <td>${Status}</td>
+            <td>${CallID}</td>
+            <td>${Customer}</td>
+            <td>${Category}</td>
+            <td><img src="img/${Sentiment}.png"</td>        
+        </tr>
+    </script>
+    
+    <!-- Livecall details table template -->
+    <script id="liveCallTemplate" type="text/x-jquery-tmpl">
+        <dl>
+            <dt>Agent</dt>
+            <dd>${Agent}</dd>
+        </dl>
+        <dl>
+            <dt>Call ID</dt>
+            <dd>${CallID}</dd>
+        </dl>
+        <dl>
+            <dt>Customer</dt>
+            <dd>${Customer}</dd>
+        </dl>
+        <dl>
+            <dt>Site</dt>
+            <dd>${Site}</dd>
+        </dl>
+        <dl>
+            <dt>Extn</dt>
+            <dd>${Extn}</dd>
+        </dl>
+        <dl>
+            <dt>Category</dt>
+            <dd>${Category}</dd>
+        </dl>
+        <dl>
+            <dt>CallDirection</dt>
+            <dd>${CallDirection}</dd>
+        </dl>
+    </script>
+        
+    <!-- Branch customer template -->
+    <script id="branchCustomer_table_template" type="text/x-jquery-tmpl">
+        <tr onclick="displayCustomer(this)">
+            <td>${Name}</td>
+            <td>${Status}</td>
+        </tr>
+    </script>
+    
+    <!-- Branch customer detail template -->
+    <script id="customerDetailTemplate" type="text/x-jquery-tmpl">
+        <dl>
+            <dd><img src=${Picture} width="200px"></dd>
+        </dl>
+        <dl>
+            <dt>Name</dt>
+            <dd>${Name}</dd>
+        </dl>
+        <dl>
+            <dt>Status</dt>
+            <dd>${Status}</dd>
+        </dl>
+    </script>
+
+    <!-- Face analysis detail template -->
+    <script id="faceAnalysisTemplate" type="text/x-jquery-tmpl">
+        <dl>
+            <dt>Identity - Name</dt>
+            <dd>${IdentityName}</dd>
+        </dl>
+        <dl>
+            <dt>Age Range</dt>
+            <dd>${Age}</dd>
+        </dl>
+        <dl>
+            <dt>Gender</dt>
+            <dd>${Gender}</dd>
+        </dl>
+    </script>
+    
+    <!-- Call analysis detail template -->
+    <script id="transcriptAnalysisTemplate" type="text/x-jquery-tmpl">
+       ${text}
+        
+        <dl>
+            <div class="grid-5 gutter-10">
+                <div class="span-1">
+                    <dt>Anger</dt>
+                    <dd>${emotions.anger}</dd>
+                </div>
+                <div class="span-1">
+                    <dt>Disgust</dt>
+                    <dd>${emotions.disgust}</dd>
+                </div>
+                <div class="span-1">
+                    <dt>Fear</dt>
+                    <dd>${emotions.fear}</dd>
+                </div>
+                <div class="span-1">
+                    <dt>Joy</dt>
+                    <dd>${emotions.joy}</dd>
+                </div>
+                <div class="span-1">
+                    <dt>Sadness</dt>
+                    <dd>${emotions.sadness}</dd>
+                </div>
+            </div>
+        </dl>
+    </script>    
+    
+    
+    <!-- ============================== Main Contents ============================== -->
+
+    <div class="flakes-frame">
+
+        <!-- Letf-hand navigation Menu -->
+        <div class="flakes-navigation">
+            <a href="javascript:showpanel('page-main');" class="logo">
+                <img src="img/nationwide-logo.jpg" width="120">
+            </a>
+
+            <ul>
+                <li><a href="javascript:showpanel('page-main');">Home</a></li>
+                <li class="title">Mortgage Contact Centre</li>
+                <li><a href="javascript:showpanel('page-dashboard');">Video Calls</a></li>
+                <li><a href="#">Appointments</a></li>
+                <li><a href="#">Customers</a></li>
+                <li><a href="#">Analytics</a></li>
+             
+                <li class="title">Branch</li>
+                <li><a href="#">Appointments</a></li>
+                <li><a href="javascript:showpanel('page-branchCustomer');">Customer</a></li>
+
+                <li class="title">Help</li>
+                <li><a href="javascript:showpanel('page-ask-me');">Ask Me</a></li>
+                <li><a href="#">Setting</a></li>
+            </ul>
+
+            <p class="foot">
+                Hello <b>Greg Lestrade</b><br>
+                <a href="">My Account</a> &bullet; <a href="">Logout</a>
+            </p>
+        </div>
+
+        <!-- Main body -->
+        <div class="flakes-content">
+            
+            <!-- Mobile navigation menu-->
+            <div class="flakes-mobile-top-bar">
+                <a href="" class="logo-wrap">
+                    <img src="img/nationwide-logo.jpg" height="30px">
+                </a>
+                <a href="" class="navigation-expand-target">
+                    <img src="img/site-wide/navigation-expand-target.png" height="26px">
+                </a>
+            </div>
+
+            <!-- Main Page -->
+            <div class="view-wrap">
+                <h1>Nationwide Building Society Smart Workplace</h1>
+                <img src="img/banner1.jpg" width="100%">
+
+                <!-- PANEL: Main -->
+                <div class="panel" id="page-main">
+                    <div><br><br>
+                        <!--<div title="Calls">
+                            <span><i class="fa-2x fa fa-arrow-down" style="color:gold"></i><br>2,382</span><br>
+                            Calls
+                        </div>
+                        <div title="First Call Resolution">
+                            <span><i class="fa-2x fa fa-arrow-up" style="color:green"></i><br>91.23 %</span><br>
+                            First Call Resolution
+                        </div>
+                        <div title="Service Level">
+                            <span><i class="fa-2x fa fa-arrow-down" style="color:gold"></i><br>97 %</span><br>
+                            Service Level
+                        </div>
+                        <div title="Avg Abandon Time">
+                            <span><i class="fa-2x fa fa-arrow-up" style="color:red"></i><br>02:49</span><br>
+                            Avg Abandon Time
+                        </div>
+                        <div title="Longest Wait Time">
+                            <span><i class="fa-2x fa fa-arrow-up" style="color:red"></i><br>05:47</span><br>
+                            Longest Wait Time
+                        </div> -->
+                        <div title="Video Call Sentiments" style="text-align: center">
+							<h2><b>Conversation Sentiment:</b> &nbsp 55% &nbsp <i class="fa-4x fa fa-smile-o" aria-hidden="true"style="color:green"></i></h2>			
+							 
+                        </div>
+						<br><br>
+                    </div>                    
+                    
+                    <div class="grid-2 gutter-40">
+                        <div class="span-1">
+                            <br>
+                            <!-- Video Call Inage -->
+                            <img src="img/SherlockHolmes.bmp" style="border:10px solid black">
+                        </div>
+                        
+                        <div class="span-1" align="right" style="text-align: left">
+                            <!-- Conversation -->
+                            <!-- <a class="twitter-timeline"  href="#" data-widget-id="797254109065842688" data-height="650" data-width="400"></a>
+                             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> -->
+							
+								<textarea rows="25" cols="45">
+								
+								GREG: Good afternoon, Mr Sherlock. My name is Greg Lestrade and I am today your mortgage advisor.
+								SHERLOCK: Good afternoon, Greg.
+								GREG: I can see you have been transferred from the Internet Bank by Watson. The transfer has been done securely and we do not need to go through the usual security questions
+								SHERLOCK: Oh, thank you. I am impressed by the technology used by Nationwide
+								GREG: Thank you. How may I help you today?
+								SHERLOCK: I think that at my age and my stable position at work, it is time to settle down and I would like to buy a house, or as they say to get on the property ladder. I have been looking around for few properties and I found the one I would like to buy, but for this I would need a mortgage.
+								GREG: I am glad you found a property you like and you came to the right place to seek for help and advice. I assume for your comments that you are a first time buyer.
+								SHERLOCK: Yes, this would be my first home, so I guess this makes me a first-time-buyer. What mortgages could you offer?
+								GREG: I know about the excitement of buying your first home, but also that it can be difficult to get on the property ladder. That's why Nationwide can help first-time home buyers by supporting affordable housing schemes like shared ownership, Right to Buy, Forces Help to Buy and Help to Buy: ISA. We also have 5% deposit mortgages for First Time Buyers. Plus, when you take out your first mortgage with us, you'll get £500 cashback when your mortgage completes. Would you like me to explain all this options?
+								SHERLOCK: Well, I have been doing some investigation myself on different types of mortgages and I think I have a fair idea of the type mortgage that best suits me, but I would like to have an expert opinion.
+								GREG: Mmmm, it sounds very good. Which type of mortgage do you think would be the most convenient for you?
+								SHERLOCK: I have done some research about the “Help to Buy” scheme backed by the Government. I know that this scheme is restricted for First Time Buyers who would like to buy a new build property, but this is not a problem because the property I would like to buy is a new build.
+								GREG: I can see you have done a thorough research. How could I help you?
+								SHERLOCK: I have some savings and I will be able to get up to the 5% of the purchase price of the property. Then with the “Help to Buy” equity loan scheme I could borrow from the Government an additional 20%. Therefore, I’d like to apply for a Nationwide mortgage of up to 75% of the purchase value. What mortgages can you offer and what would be the interest rate?
+								
+								</textarea> 
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL: Livecall dashboard -->
+                <div class="panel" id="page-dashboard" style="display: none">       
+                    <h2>Live Call Monitor</h2>
+                    <div class="grid-1">
+                        <div class="span-1">
+                            <table id="dashboard_table" class="flakes-table" style="width:100%">
+                                <colgroup>
+                                      <col span="1" style="width:60%" />
+                                      <col span="1" style="width:20%" />
+                                      <col span="1" style="width:20%" />
+                                      <col span="1" style="width:10%"/>
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>Agent</th>
+                                        <th>First Call Resolution (%)</th>
+                                        <th>Status</th>
+                                        <th>Call ID</th>
+                                        <th>Customer</th>
+                                        <th>Category</th>
+                                        <th>Sentiment</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dashboard_table_body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PANEL: Livecall details -->
+                <div class="panel" id="page-livecall" style="display : none">
+                    <div class="grid-3 gutter-40">  
+                        <div class="span-1">
+                            <fieldset class="flakes-information-box">
+                                <legend>Call Details</legend>
+                                <span id="liveCallDetails"></span>
+                            </fieldset>
+                        </div>
+                        <div class="span-2">
+                            <div class="grid-1">
+                                <div class="span-1">
+                                    <fieldset class="flakes-information-box">
+                                        <legend>Playing LiveCall</legend>
+                                        <br>
+                                        <audio src="data/InboundSampleRecording.mp3" preload="auto" />
+                                        <br>
+                                    </fieldset>
+                                </div>
+                                <div class="span-1">
+                                    <fieldset class="flakes-information-box">
+                                        <legend>Call Transcript</legend>
+                                        <div id="callTranscript" class="scrollingBox">
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="span-1">
+                                    <fieldset class="flakes-information-box">
+                                        <legend>Call Analysis</legend>
+                                        <div id="transcriptAnalysisDetails" >
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                        </div>
+                                                    
+                    </div>
+                </div>
+
+                <!-- PANEL: Branch customer dashboard -->
+                <div class="panel" id="page-branchCustomer" style="display : none">
+                    <h2>Customers in the Branch - 4827</h2>
+                    <div class="grid-1">
+                        <div class="span-1">
+                            <table id="branchCustomer_table" class="flakes-table" style="width:100%">
+                                <colgroup>
+                                      <col span="1" style="width:50%" />
+                                      <col span="1" style="width:50%" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>Customer</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="branchCustomer_table_body"></tbody>
+                            </table>
+                        </div>
+                    </div>                    
+                </div>
+
+                <!-- PANEL: Branch customer details -->                                          
+                <div class="panel" id="page-customer" style="display : none">
+                    <div class="grid-3 gutter-40">  
+                        <div class="span-1">
+                            <fieldset class="flakes-information-box">
+                                <legend>Customer Details</legend>
+                                <span id="customerDetails"></span>
+                            </fieldset>
+                        </div>
+                        
+                        <div class="span-2">
+                            <div class="grid-1">
+                                <div class="span-1">
+                                    <fieldset class="flakes-information-box" style="height:250px" class="scrollingBox">
+                                        <legend>Face Analysis</legend>
+                                        <span id="faceAnalysisDetails"></span>
+                                    </fieldset>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>                    
+                </div>
+                
+                <!-- PANEL: Ask me -->   
+                <div class="panel" id="page-ask-me" style="display : none">
+
+                    <div class="flakes-search">
+                        <input class="search-box search" id="question" placeholder="Questions" autofocus>
+                    </div>
+
+                    <div class="flakes-actions-bar">
+                        <a class="action button-gray smaller right" onclick="displayAnswer()">Search</a>
+                    </div>
+
+                    <table class="flakes-table">
+                        <colgroup>
+                            <col span="1" style="width:20px" />
+                            <col span="1" style="width:40%" />
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td class="company">Product Name</td>
+                                <td class="contact">SKU</td>
+                                <td class="city">City</td>
+                                <td class="name">Supplier</td>
+                            </tr>
+                        </thead>
+                        <tbody class="list">
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Dolor Fusce</a></td>
+                              <td class="contact">654-1816</td>
+                              <td class="city">Eritrea</td>
+                              <td class="name">Daquan Parks</td>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Eu Sem Pellentesque</a></td>
+                              <td class="contact">937-5793</td>
+                              <td class="city">Macao</td>
+                              <td class="name">Mechelle Kirkland</td>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Maecenas</a></td>
+                              <td class="contact">682-9676</td>
+                              <td class="city">Bahamas</td>
+                              <td class="name">Warren Morales</td>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Augue Porttitor</a></td>
+                              <td class="contact">389-1087</td>
+                              <td class="city">Luxembourg</td>
+                              <td class="name">Steven Madden</td>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Dapibus</a></td>
+                              <td class="contact">893-7857</td>
+                              <td class="city">Fiji</td>
+                              <td class="name">Sierra Morton</td>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Eleifend</a></td>
+                              <td class="contact">1-783-967-8521</td>
+                              <td class="city">Martinique</td>
+                              <td class="name">Maia Ayers</td>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Tincidunt</a></td>
+                              <td class="contact">486-7965</td>
+                              <td class="city">Malawi</td>
+                              <td class="name">Ruth Lee</td>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Et</a></td>
+                              <td class="contact">462-2201</td>
+                              <td class="city">Malawi</td>
+                              <td class="name">Noel Langley</td>
+                            </tr>
+                            <!--  -->
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Dolor Fusce</a></td>
+                              <td class="contact">654-1816</td>
+                              <td class="city">Eritrea</td>
+                              <td class="name">Daquan Parks</td>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Eu Sem Pellentesque</a></td>
+                              <td class="contact">937-5793</td>
+                              <td class="city">Macao</td>
+                              <td class="name">Mechelle Kirkland</td>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Maecenas</a></td>
+                              <td class="contact">682-9676</td>
+                              <td class="city">Bahamas</td>
+                              <td class="name">Warren Morales</td>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Augue Porttitor</a></td>
+                              <td class="contact">389-1087</td>
+                              <td class="city">Luxembourg</td>
+                              <td class="name">Steven Madden</td>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Dapibus</a></td>
+                              <td class="contact">893-7857</td>
+                              <td class="city">Fiji</td>
+                              <td class="name">Sierra Morton</td>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Eleifend</a></td>
+                              <td class="contact">1-783-967-8521</td>
+                              <td class="city">Martinique</td>
+                              <td class="name">Maia Ayers</td>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Tincidunt</a></td>
+                              <td class="contact">486-7965</td>
+                              <td class="city">Malawi</td>
+                              <td class="name">Ruth Lee</td>
+                            </tr>
+                            <tr>
+                              <td><input type="checkbox"></td>
+                              <td class="company"><a href="#">Et</a></td>
+                              <td class="contact">462-2201</td>
+                              <td class="city">Malawi</td>
+                              <td class="name">Noel Langley</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="flakes-pagination right">
+                        <a href="">Prev</a> &nbsp; <input value="1"> <i>of</i> 3 &nbsp; <a href="">Next</a>
+                    </div>
+                    
+                </div>
+                    
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="bower_components/gridforms/gridforms/gridforms.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-tmpl/jquery.tmpl.min.js"></script>
+    <script src="bower_components/snapjs/snap.js"></script>
+    <script src="bower_components/responsive-elements/responsive-elements.js"></script>
+    <script src="bower_components/gridforms/gridforms/gridforms.js"></script>
+    <script src="libs/audiojs/audiojs/audio.min.js"></script>
+
+    <script src="js/base.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/page-ask-me.js"></script>
+</body>
+</html>
